@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 
 
-public class Agenda extends JFrame implements ActionListener{
+public class Agenda extends JFrame{
     
     //variables
     JPanel paneMenu,paneBase,paneTop;
@@ -55,11 +55,9 @@ public class Agenda extends JFrame implements ActionListener{
         paneMenu.setLayout(null);
         
         pedido = new JButton("Pedidos");
-        pedido.addActionListener(this);
         report = new JButton("Reportes");
-        report.addActionListener(this);
         invent = new JButton("Inventario");
-        invent.addActionListener(this);
+       
         
         paneMenu.add(pedido);
         paneMenu.add(report);
@@ -109,14 +107,6 @@ public class Agenda extends JFrame implements ActionListener{
         sclist.setSize(paneBase. getSize());
         paneBase.add(paneTop,BorderLayout.NORTH);
         paneBase.add(sclist, BorderLayout.CENTER);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource()==pedido){
-           crearPedidos();
-        }
-        
     }
     
 }
