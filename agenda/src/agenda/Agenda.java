@@ -1,19 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package agenda;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 
-public class Agenda extends JFrame{
+public class Agenda extends JFrame implements ActionListener{
     
     //variables
-    JPanel paneIz,paneTop,base;
+    JPanel paneMenu,paneBase,paneTop;
     JScrollPane sclist;
     JTable list;
     JButton pedido,invent,report,nuevo;
@@ -27,7 +25,7 @@ public class Agenda extends JFrame{
 
 
     public static void main(String[] args) {
-        Agenda iniciar = new Agenda();
+        new Agenda();
         
     }
     
@@ -39,30 +37,52 @@ public class Agenda extends JFrame{
         setLocationRelativeTo(null);
         this.setResizable(false);
         
-        paneIz = new JPanel();
-        paneIz.setSize(150,700);
+        crearPanelMenu();
+        crearPanelBase();
+        crearPedidos();
         
-        paneIz.setLocation(0,0);
-        paneIz.setLayout(null);
+        
+        repaint();
+        setVisible(true);
+        
+    }
+    
+    private void crearPanelMenu(){
+         paneMenu = new JPanel();
+        paneMenu.setSize(150,700);
+        
+        paneMenu.setLocation(0,0);
+        paneMenu.setLayout(null);
         
         pedido = new JButton("Pedidos");
+        pedido.addActionListener(this);
         report = new JButton("Reportes");
+        report.addActionListener(this);
         invent = new JButton("Inventario");
+        invent.addActionListener(this);
         
-        paneIz.add(pedido);
-        paneIz.add(report);
-        paneIz.add(invent);
+        paneMenu.add(pedido);
+        paneMenu.add(report);
+        paneMenu.add(invent);
         
         pedido.setBounds(0,0,150,50);
         report.setBounds(0, 50, 150, 50);
         invent.setBounds(0,100,150,50);
-       
-        base = new JPanel();
-        base.setLocation(150,0);
-        base.setBackground(Color.LIGHT_GRAY);
-        base.setSize(this.getWidth()-150,this.getHeight());
-        base.setLayout(new BorderLayout());
         
+        
+        add(paneMenu);
+    }
+    
+    private void crearPanelBase(){
+        paneBase = new JPanel();
+        paneBase.setLocation(150,0);
+        paneBase.setBackground(Color.LIGHT_GRAY);
+        paneBase.setSize(this.getWidth()-150,this.getHeight());
+        paneBase.setLayout(new BorderLayout());
+        add(paneBase);
+    }
+    
+    private void crearPedidos(){
         paneTop = new JPanel();
         paneTop.setLayout(new BorderLayout());
         nuevo = new JButton("Nuevo");
@@ -86,16 +106,16 @@ public class Agenda extends JFrame{
         
         list = new JTable(data, columnNames);
         sclist = new JScrollPane(list);
-        sclist.setSize(base.getSize());
-        base.add(paneTop,BorderLayout.NORTH);
-        base.add(sclist, BorderLayout.CENTER);
-        
-        
-        add(paneIz);
-        add(base);
-        
-        repaint();
-        setVisible(true);
+        sclist.setSize(paneBase. getSize());
+        paneBase.add(paneTop,BorderLayout.NORTH);
+        paneBase.add(sclist, BorderLayout.CENTER);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if(ae.getSource()==pedido){
+           crearPedidos();
+        }
         
     }
     

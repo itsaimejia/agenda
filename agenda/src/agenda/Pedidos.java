@@ -4,7 +4,7 @@ import javax.swing.*;
 
 /**
  *
- * @author Jesus
+ * @author 
  */
 public class Pedidos extends JPanel{
     JTable list;
