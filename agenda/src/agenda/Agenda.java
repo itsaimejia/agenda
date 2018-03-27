@@ -55,6 +55,15 @@ public class Agenda extends JFrame{
         paneMenu.setLayout(null);
         
         pedido = new JButton("Pedidos");
+        pedido.addActionListener(e->{
+            /*
+            Al presionar el botón se espera que se carguen los componentes agregados en el 
+            método "crearPedidos()" pero sólo aparece la tabla
+            */
+            crearPedidos();// error?
+             
+         });
+        
         report = new JButton("Reportes");
         invent = new JButton("Inventario");
        
