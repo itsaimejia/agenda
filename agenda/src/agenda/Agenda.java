@@ -11,16 +11,17 @@ import java.awt.event.ActionListener;
 public class Agenda extends JFrame{
     
     //variables
-    JPanel paneMenu,paneBase,paneTop;
-    JScrollPane sclist;
-    JTable list;
-    JButton pedido,invent,report,nuevo;
+    Pedidos pedidos;
+    JPanel paneMenu, paneBase;
+    JButton pedido,invent,report;
     
     //variables
     
     Agenda(){
         init();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        pedidos= new Pedidos();
+        paneBase.add(pedidos);
     }
 
 
@@ -39,7 +40,8 @@ public class Agenda extends JFrame{
         
         crearPanelMenu();
         crearPanelBase();
-        crearPedidos();
+        
+        
         
         
         repaint();
@@ -48,7 +50,7 @@ public class Agenda extends JFrame{
     }
     
     private void crearPanelMenu(){
-         paneMenu = new JPanel();
+        paneMenu = new JPanel();
         paneMenu.setSize(150,700);
         
         paneMenu.setLocation(0,0);
@@ -56,15 +58,17 @@ public class Agenda extends JFrame{
         
         pedido = new JButton("Pedidos");
         pedido.addActionListener(e->{
-            /*
-            Al presionar el botón se espera que se carguen los componentes agregados en el 
-            método "crearPedidos()" pero sólo aparece la tabla
-            */
-            crearPedidos();// error?
+            pedidos= new Pedidos();
+            paneBase.add(pedidos);
              
          });
         
         report = new JButton("Reportes");
+        report.addActionListener(e->{
+            
+             
+         });
+        
         invent = new JButton("Inventario");
        
         
@@ -75,8 +79,6 @@ public class Agenda extends JFrame{
         pedido.setBounds(0,0,150,50);
         report.setBounds(0, 50, 150, 50);
         invent.setBounds(0,100,150,50);
-        
-        
         add(paneMenu);
     }
     
@@ -85,37 +87,9 @@ public class Agenda extends JFrame{
         paneBase.setLocation(150,0);
         paneBase.setBackground(Color.LIGHT_GRAY);
         paneBase.setSize(this.getWidth()-150,this.getHeight());
-        paneBase.setLayout(new BorderLayout());
         add(paneBase);
     }
     
-    private void crearPedidos(){
-        paneTop = new JPanel();
-        paneTop.setLayout(new BorderLayout());
-        nuevo = new JButton("Nuevo");
-        
-        paneTop.add(nuevo,BorderLayout.EAST);
-        
-        
-        String feSol="23/03/18";
-        String feEno="30/03/18";
-        String nombreC= "Juan Perez";
-        String det ="Ninguno";
-
-        String [] columnNames = {"Fecha de Solicitud",
-                "Fecha de Entrega",
-                "Nombre de Cliente",
-                "Detalles"};
-        Object[][] data = {
-                {feSol,feEno,
-                        nombreC,det},
-        };
-        
-        list = new JTable(data, columnNames);
-        sclist = new JScrollPane(list);
-        sclist.setSize(paneBase. getSize());
-        paneBase.add(paneTop,BorderLayout.NORTH);
-        paneBase.add(sclist, BorderLayout.CENTER);
-    }
+   
     
 }
