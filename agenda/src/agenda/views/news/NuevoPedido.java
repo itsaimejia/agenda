@@ -1,14 +1,11 @@
 
 package agenda.views.news;
 
-
-import java.awt.Dimension;
 import javax.swing.*;
 
 
 public class NuevoPedido extends JFrame {
     
-   
     JLabel total,fecha,nombre,direccion,telefono,pedido,titulo;
     JTextField tota,fech,nombr,direccio,telefon;
     JButton guardar;

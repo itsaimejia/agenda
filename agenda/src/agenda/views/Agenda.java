@@ -1,13 +1,9 @@
-
 package agenda.views;
 
 import agenda.views.secondary.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 
 
 public class Agenda extends JFrame{
@@ -41,13 +37,10 @@ public class Agenda extends JFrame{
         setLocation(200,10);
         setLayout(null);
         setLocationRelativeTo(null);
-        this.setResizable(false);
+        setResizable(false);
         
         crearPanelMenu();
         crearPanelBase();
-        
-        
-        
         
         repaint();
         setVisible(true);
