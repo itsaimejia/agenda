@@ -1,7 +1,8 @@
 
 package agenda.views;
 
-import agenda.views.secondary.Pedidos;
+import agenda.views.secondary.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,13 +13,16 @@ import java.awt.event.ActionListener;
 public class Agenda extends JFrame{
     
     //variables
-    Pedidos pedidos;
-    JPanel paneMenu, paneBase;
-    JButton pedido,invent,report;
+    private Pedidos pedidos;
+    private Inventario inventario;
+    private Reportes reportes;
+    
+    private JPanel paneMenu, paneBase;
+    private JButton pedido,invent,report;
     
     //variables
     
-    Agenda(){
+    public Agenda(){
         init();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pedidos= new Pedidos();
@@ -59,27 +63,41 @@ public class Agenda extends JFrame{
         
         pedido = new JButton("Pedidos");
         pedido.addActionListener(e->{
+            paneBase.removeAll();
+            paneBase.repaint();
             pedidos= new Pedidos();
             paneBase.add(pedidos);
              
          });
         
-        report = new JButton("Reportes");
-        report.addActionListener(e->{
-            
-             
-         });
+       
         
         invent = new JButton("Inventario");
+        invent.addActionListener(e->{
+            paneBase.removeAll();
+            paneBase.repaint();
+            inventario= new Inventario();
+            paneBase.add(inventario);
+            
+        });
+         report = new JButton("Reportes");
+        report.addActionListener(e->{
+            paneBase.removeAll();
+            paneBase.repaint();
+            reportes= new Reportes();
+            paneBase.add(reportes);
+             
+         });
        
         
         paneMenu.add(pedido);
-        paneMenu.add(report);
         paneMenu.add(invent);
+        paneMenu.add(report);
+        
         
         pedido.setBounds(0,0,150,50);
-        report.setBounds(0, 50, 150, 50);
-        invent.setBounds(0,100,150,50);
+        invent.setBounds(0, 50, 150, 50);
+        report.setBounds(0,100,150,50);
         add(paneMenu);
     }
     

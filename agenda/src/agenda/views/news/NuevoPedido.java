@@ -15,13 +15,6 @@ public class NuevoPedido extends JFrame {
     JTable lista;
     JScrollPane sclista;
     
-    
-    public static void main(String args[])
-    {
-       NuevoPedido pedido=new NuevoPedido();
-       pedido.setVisible(true);
-    }
-    
     public NuevoPedido()
     {
        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -75,15 +68,7 @@ public class NuevoPedido extends JFrame {
          add(tota);
          guardar=new JButton("Guardar Pedido");
          guardar.setBounds(200,680,150,35);
-         add(guardar);
-         
-         
-         
-         
-      
-         
-         
-         
+         add(guardar);  
     }
     
    

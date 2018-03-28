@@ -1,5 +1,6 @@
 
 package agenda.views.secondary;
+import agenda.views.news.*;
 import java.awt.*;
 import javax.swing.*;
 
@@ -8,6 +9,7 @@ import javax.swing.*;
  * @author 
  */
 public class Pedidos extends JInternalFrame{
+    private NuevoPedido nuevoPedido;
     
     private Container contenedor;
     private JPanel paneTop, paneBottom;
@@ -25,7 +27,14 @@ public class Pedidos extends JInternalFrame{
         
         paneTop = new JPanel();
         paneTop.setLayout(new BorderLayout());
+        
+        
         nuevo = new JButton("Nuevo");
+        nuevo.addActionListener(e->{
+            nuevoPedido= new NuevoPedido();
+            nuevoPedido.setVisible(true);
+            
+        });
         paneTop.add(nuevo,BorderLayout.WEST);
         
         
@@ -63,8 +72,7 @@ public class Pedidos extends JInternalFrame{
         contenedor.add(paneBottom,BorderLayout.CENTER);
         
         
-        this.setClosable(true);
-        this.setResizable(true);
+        this.setClosable(false);
 	this.setVisible(true);
         
     }
