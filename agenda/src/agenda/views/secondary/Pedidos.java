@@ -1,5 +1,5 @@
 
-package agenda;
+package agenda.views.secondary;
 import java.awt.*;
 import javax.swing.*;
 
@@ -26,7 +26,6 @@ public class Pedidos extends JInternalFrame{
         paneTop = new JPanel();
         paneTop.setLayout(new BorderLayout());
         nuevo = new JButton("Nuevo");
-        
         paneTop.add(nuevo,BorderLayout.WEST);
         
         

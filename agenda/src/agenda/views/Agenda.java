@@ -1,6 +1,7 @@
 
-package agenda;
+package agenda.views;
 
+import agenda.views.secondary.Pedidos;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,12 +1,12 @@
 
-package agenda;
+package agenda.views.news;
 
 
 import java.awt.Dimension;
 import javax.swing.*;
 
 
-public class Nuevo extends JFrame {
+public class NuevoPedido extends JFrame {
     
    
     JLabel total,fecha,nombre,direccion,telefono,pedido,titulo;
@@ -18,11 +18,11 @@ public class Nuevo extends JFrame {
     
     public static void main(String args[])
     {
-       Nuevo pedido=new Nuevo();
+       NuevoPedido pedido=new NuevoPedido();
        pedido.setVisible(true);
     }
     
-    public Nuevo()
+    public NuevoPedido()
     {
        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
          setTitle("Nuevo Pedido");
