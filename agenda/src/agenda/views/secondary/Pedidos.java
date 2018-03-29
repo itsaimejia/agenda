@@ -12,7 +12,7 @@ public class Pedidos extends JInternalFrame{
     private NuevoPedido nuevoPedido;
     
     private Container contenedor;
-    private JPanel paneTop, paneBottom;
+    private JPanel panelTop, panelBottom;
     private JTable tabla;
     private JScrollPane scTabla;
     private JButton nuevo;
@@ -25,8 +25,8 @@ public class Pedidos extends JInternalFrame{
         contenedor= getContentPane();
 
         
-        paneTop = new JPanel();
-        paneTop.setLayout(new BorderLayout());
+        panelTop = new JPanel();
+        panelTop.setLayout(new BorderLayout());
         
         
         nuevo = new JButton("Nuevo");
@@ -35,18 +35,18 @@ public class Pedidos extends JInternalFrame{
             nuevoPedido.setVisible(true);
             
         });
-        paneTop.add(nuevo,BorderLayout.WEST);
+        panelTop.add(nuevo,BorderLayout.WEST);
         
         
-        paneBottom= new JPanel(null);
+        panelBottom= new JPanel(null);
         
         lblConsulta= new JLabel("Consultar fecha: ");
         lblConsulta.setBounds(80,25,100,10);
-        paneBottom.add(lblConsulta);
+        panelBottom.add(lblConsulta);
         
         txtConsultaFecha= new JTextField();
         txtConsultaFecha.setBounds(200,20,150,20);
-        paneBottom.add(txtConsultaFecha);
+        panelBottom.add(txtConsultaFecha);
         
         String feSol="23/03/18";
         String feEno="30/03/18";
@@ -62,14 +62,19 @@ public class Pedidos extends JInternalFrame{
                         nombreC,det},
         };
         
-        tabla = new JTable(data, columnNames);
+        tabla = new JTable(data, columnNames){
+          @Override
+          public boolean isCellEditable(int row, int column){
+              return false;
+          }  
+        };
         scTabla = new JScrollPane(tabla);
         scTabla.setBounds(30,70,750,300);
-        paneBottom.add(scTabla);
+        panelBottom.add(scTabla);
         
         
-        contenedor.add(paneTop,BorderLayout.PAGE_START);
-        contenedor.add(paneBottom,BorderLayout.CENTER);
+        contenedor.add(panelTop,BorderLayout.PAGE_START);
+        contenedor.add(panelBottom,BorderLayout.CENTER);
         
         
         this.setClosable(false);
