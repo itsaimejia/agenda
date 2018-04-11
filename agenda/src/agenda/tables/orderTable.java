@@ -6,12 +6,13 @@
 package agenda.tables;
 
 import java.awt.Color;
-import java.awt.Dimension;
+
 import javax.swing.*;
 
 /**
  *
  * @author louq
+ * Esta clase no sirve xd
  */
 public class orderTable {
    
