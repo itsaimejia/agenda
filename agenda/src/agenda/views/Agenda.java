@@ -5,6 +5,7 @@ import agenda.views.secondary.*;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class Agenda extends JFrame {
 
     //variables
@@ -12,25 +13,31 @@ public class Agenda extends JFrame {
     private Inventario inventario;
     private Reportes reportes;
 
-    private JPanel panelMenu, panelBase;
+    public JPanel panelMenu, panelBase;
     private JButton pedido, invent, report;
 
     //variables
+    public JPanel getPane(){
+        return panelBase;
+    }
     public Agenda() {
         init();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
+        
         pedidos = new Pedidos();
         panelBase.add(pedidos);
+        repaint();
     }
 
     public static void main(String[] args) {
         new Agenda();
-
     }
 
     void init() {
         setTitle("Alquiladora San Francisco");
-        setSize(1000, 500);
+        setSize(1000, 550);
         setLocation(200, 10);
         setLayout(null);
         setLocationRelativeTo(null);
@@ -89,6 +96,7 @@ public class Agenda extends JFrame {
 
     private void crearPanelBase() {
         panelBase = new JPanel();
+        panelBase.setLayout(new BorderLayout());
         panelBase.setLocation(150, 0);
         panelBase.setBackground(Color.LIGHT_GRAY);
         panelBase.setSize(this.getWidth() - 150, this.getHeight());

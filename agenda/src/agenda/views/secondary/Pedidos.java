@@ -10,7 +10,7 @@ import javax.swing.*;
  */
 public class Pedidos extends JInternalFrame{
     private NuevoPedido nuevoPedido;
-    
+    private newOrder nuevaOrden;
     private Container contenedor;
     private JPanel panelTop, panelBottom;
     private JTable tabla;
@@ -18,6 +18,7 @@ public class Pedidos extends JInternalFrame{
     private JButton nuevo;
     private JLabel lblConsulta;
     private JTextField txtConsultaFecha;
+    private com.toedter.calendar.JDateChooser calendario;
     
     public Pedidos(){
         this.setTitle("Pedidos");
@@ -31,9 +32,13 @@ public class Pedidos extends JInternalFrame{
         
         nuevo = new JButton("Nuevo");
         nuevo.addActionListener(e->{
+            /*obsoleto
             nuevoPedido= new NuevoPedido();
             nuevoPedido.setVisible(true);
+            */
             
+            nuevaOrden = new newOrder();
+            nuevaOrden.setVisible(true);
         });
         panelTop.add(nuevo,BorderLayout.WEST);
         
@@ -44,9 +49,15 @@ public class Pedidos extends JInternalFrame{
         lblConsulta.setBounds(80,25,100,10);
         panelBottom.add(lblConsulta);
         
+        calendario = new com.toedter.calendar.JDateChooser();
+        calendario.setBounds(200,20,150,20);
+        panelBottom.add(calendario);
+        
+        /*obsoleto
         txtConsultaFecha= new JTextField();
         txtConsultaFecha.setBounds(200,20,150,20);
         panelBottom.add(txtConsultaFecha);
+        */
         
         String feSol="23/03/18";
         String feEno="30/03/18";
