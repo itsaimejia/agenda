@@ -17,7 +17,7 @@ public class Inventario extends JInternalFrame{
    private NuevoProducto nuevoProducto;
     
     private Container contenedor;
-    private JPanel panelTop, panelBottom;
+    private JPanel paneTop, paneBottom;
     private JTable tabla;
     private JScrollPane scTabla;
     private JButton nuevo;
@@ -28,8 +28,8 @@ public class Inventario extends JInternalFrame{
         contenedor= getContentPane();
 
         
-        panelTop = new JPanel();
-        panelTop.setLayout(new BorderLayout());
+        paneTop = new JPanel();
+        paneTop.setLayout(new BorderLayout());
         
         
         nuevo = new JButton("Nuevo");
@@ -38,11 +38,12 @@ public class Inventario extends JInternalFrame{
             nuevoProducto.setVisible(true);
             
         });
-        panelTop.add(nuevo,BorderLayout.WEST);
+        paneTop.add(nuevo,BorderLayout.WEST);
         
         
-        panelBottom= new JPanel(null);
-        String id="ABC3";
+        paneBottom= new JPanel(null);
+        
+       String id="ABC3";
         String producto="SILLAS METALICAS";
         String cantidad= "300";
         String disponible ="200";
@@ -65,11 +66,11 @@ public class Inventario extends JInternalFrame{
         };
         scTabla = new JScrollPane(tabla);
         scTabla.setBounds(30,40,750,300);
-        panelBottom.add(scTabla);
+        paneBottom.add(scTabla);
         
         
-        contenedor.add(panelTop,BorderLayout.PAGE_START);
-        contenedor.add(panelBottom,BorderLayout.CENTER);
+        contenedor.add(paneTop,BorderLayout.PAGE_START);
+        contenedor.add(paneBottom,BorderLayout.CENTER);
         
         
         this.setClosable(false);
