@@ -23,7 +23,7 @@ public class NuevoContacto {
     public boolean crear(Contacto contacto, double total){
         try{
             stmt=con.getConnection().createStatement();
-            stmt.executeUpdate("INSERT INTO cliente INSERT INTO 'cliente' ('nombre', 'telefono', 'direccion', 'fechaEvento', 'idPedido', 'total') "
+            stmt.executeUpdate("INSERT INTO 'cliente' ('nombre', 'telefono', 'direccion', 'fechaEvento', 'idPedido', 'total') "
                     + "VALUES ('"+contacto.getNombre()+"', '"+contacto.getTelefono()+"', '"+contacto.getDireccion()+"', '"+contacto.getFecha()+"', '"+contacto.getIdPedido()+"', '"+total+"')");
             return true;
         }catch(Exception ex){
