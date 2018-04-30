@@ -3,10 +3,11 @@ package agenda.views.secondary;
 import agenda.views.news.*;
 import java.awt.*;
 import javax.swing.*;
+import agenda.tables.orderTable;
 
 /**
  *
- * @author 
+ * @author louq
  */
 public class Pedidos extends JInternalFrame{
     private NuevoPedido nuevoPedido;
@@ -20,7 +21,15 @@ public class Pedidos extends JInternalFrame{
     private JTextField txtConsultaFecha;
     private com.toedter.calendar.JDateChooser calendario;
     
-    public Pedidos(){
+    orderTable tablon;
+    
+    public Pedidos(int x){
+        
+        updateUI();
+    }
+    
+    public Pedidos(orderTable tablx){
+        tablon=tablx;
         this.setTitle("Pedidos");
         this.setPreferredSize(new Dimension(800,450));
         contenedor= getContentPane();
@@ -37,7 +46,7 @@ public class Pedidos extends JInternalFrame{
             nuevoPedido.setVisible(true);
             */
             
-            nuevaOrden = new newOrder();
+            nuevaOrden = new newOrder(tablon);
             nuevaOrden.setVisible(true);
         });
         panelTop.add(nuevo,BorderLayout.WEST);
@@ -59,26 +68,10 @@ public class Pedidos extends JInternalFrame{
         panelBottom.add(txtConsultaFecha);
         */
         
-        String feSol="23/03/18";
-        String feEno="30/03/18";
-        String nombreC= "Juan Perez";
-        String det ="Ninguno";
-
-        String [] columnNames = {"Fecha de Solicitud",
-                "Fecha de Entrega",
-                "Nombre de Cliente",
-                "Detalles"};
-        Object[][] data = {
-                {feSol,feEno,
-                        nombreC,det},
-        };
         
-        tabla = new JTable(data, columnNames){
-          @Override
-          public boolean isCellEditable(int row, int column){
-              return false;
-          }  
-        };
+        
+       
+        tabla = tablon.getTable();
         scTabla = new JScrollPane(tabla);
         scTabla.setBounds(30,70,750,300);
         panelBottom.add(scTabla);

@@ -1,6 +1,10 @@
 
 package agenda.views.news;
 import javax.swing.*;
+import agenda.views.secondary.Pedidos;
+import agenda.tables.orderTable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -8,8 +12,11 @@ import javax.swing.*;
  */
 public class newOrder extends JFrame {
 
-    public newOrder() {
+    public newOrder(orderTable tab) {
+         tablan=tab;
         init();
+        
+        
     }
                        
     private void init() {
@@ -77,6 +84,27 @@ public class newOrder extends JFrame {
         bSave.setText("Guardar");
         add(bSave);
         bSave.setBounds(210, 470, 150, 32);
+        
+        bSave.addActionListener(e->{
+          
+             Object[] data = {
+                 txtnumber.getText(),
+                 df.format(calendario.getDate()),
+                 txtname.getText(),
+                 "Ninguno"
+                 
+                }; 
+            
+            tablan.insertOrder(data);
+            revalidate(); repaint();
+            this.dispose();
+            
+            
+            
+            
+            
+        });
+        
         add(spProduct);
         spProduct.setBounds(0, 240, 380, 170);
 
@@ -92,7 +120,7 @@ public class newOrder extends JFrame {
     }                       
                                    
 
-                  
+    private DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");              
     private JButton bCancel;
     private JButton bSave;
     private com.toedter.calendar.JDateChooser calendario;
@@ -108,5 +136,5 @@ public class newOrder extends JFrame {
     private JTextField txtname;
     private JTextField txtnumber;
     private JTextField txtprice;
-                   
+    private orderTable tablan;
 }

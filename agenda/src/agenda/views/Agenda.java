@@ -1,22 +1,27 @@
 package agenda.views;
 
 import agenda.views.secondary.*;
-
 import javax.swing.*;
 import java.awt.*;
+import agenda.tables.*;
 
 
+/**
+ * 
+ * @author louq
+ */
 public class Agenda extends JFrame {
 
     //variables
     private Pedidos pedidos;
     private Inventario inventario;
     private Reportes reportes;
-
     public JPanel panelMenu, panelBase;
     private JButton pedido, invent, report;
-
+    private orderTable tabla = new orderTable();
+    private inventarioTable invTabla = new inventarioTable();
     //variables
+    
     public JPanel getPane(){
         return panelBase;
     }
@@ -24,11 +29,10 @@ public class Agenda extends JFrame {
         init();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
-        
-        pedidos = new Pedidos();
+        pedidos = new Pedidos(tabla);
         panelBase.add(pedidos);
         repaint();
+        
     }
 
     public static void main(String[] args) {
@@ -62,7 +66,7 @@ public class Agenda extends JFrame {
         pedido.addActionListener(e -> {
             panelBase.removeAll();
             panelBase.repaint();
-            pedidos = new Pedidos();
+            pedidos = new Pedidos(tabla);
             panelBase.add(pedidos);
 
         });
@@ -71,7 +75,7 @@ public class Agenda extends JFrame {
         invent.addActionListener(e -> {
             panelBase.removeAll();
             panelBase.repaint();
-            inventario = new Inventario();
+            inventario = new Inventario(invTabla);
             panelBase.add(inventario);
 
         });
