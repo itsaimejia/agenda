@@ -1,5 +1,8 @@
 
 package agenda.views.news;
+import agenda.crud.NuevoContacto;
+import agenda.models.Contacto;
+
 import javax.swing.*;
 import agenda.views.secondary.Pedidos;
 import agenda.tables.orderTable;
@@ -12,11 +15,17 @@ import java.text.SimpleDateFormat;
  */
 public class newOrder extends JFrame {
 
+
     public newOrder(orderTable tab) {
          tablan=tab;
         init();
         
-        
+
+    NuevoContacto nuevoContacto;
+    public newOrder() {
+        init();
+        nuevoContacto=new NuevoContacto();
+
     }
                        
     private void init() {
@@ -82,6 +91,18 @@ public class newOrder extends JFrame {
         bCancel.setBounds(20, 470, 150, 32);
 
         bSave.setText("Guardar");
+        bSave.addActionListener(e->{
+        
+            Contacto nuevo= new Contacto();
+            nuevo.setNombre(txtname.getText());
+            nuevo.setDireccion(txtaddress.getText());
+            nuevo.setFecha(calendario.getToolTipText());
+            nuevo.setIdPedido(1);
+            
+            boolean correcto=nuevoContacto.crear(nuevo, Double.parseDouble(txtprice.getText()));
+            JOptionPane.showMessageDialog(null, (correcto)?"Se agregó el pedido":"Algo salió mal");
+            
+        });
         add(bSave);
         bSave.setBounds(210, 470, 150, 32);
         
