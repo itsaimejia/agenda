@@ -7,51 +7,55 @@ package agenda.tables;
 
 import java.awt.Color;
 
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author louq
- * Esta clase no sirve xd
+
  */
 public class orderTable {
-   
-    String fSolicitud="Juan Perez",fEntrega="31/feb/2018",nCliente="18",details="Ninguno";
     
+    private DefaultTableModel dtModel;
+    private JTable tabla;
     
-    String [] columnNames = {"Fecha de Solicitud",
+    String tCliente="6613195267",fEntrega="-1/marz/18",nCliente="18",details="Ninguno";
+    String [] nColumnas = {
+                "Teléfono de Cliente",
                 "Fecha de Entrega",
                 "Nombre de Cliente",
-                "Detalles"};
+                "Detalles"
+                };
     
-    Object[][] data = {
-        {fSolicitud,fEntrega,nCliente,details}
-    };
-    
-     JTable tabla= new JTable(data,columnNames){
-          @Override
-          public boolean isCellEditable(int row, int column){
-              return false;
-          }  
-        };
+    Object[] data = {
+        
+            tCliente,
+            fEntrega,
+            nCliente,
+            details
+
+    };    
+
     
     public orderTable(){
         
-       //tabla
-        
-        
+        dtModel = new DefaultTableModel(null,nColumnas);
+        tabla= new JTable(dtModel);
     }
     
     public JTable getTable(){
-        tabla.setBackground(Color.BLUE);
         return tabla;
     }
-    public void setDate(){
-        
-    }
-    public void setSize(){
-        tabla.setLocation(0, 0);
-       //setSize(400,400);
+    
+    /**
+     * Método para insertar una nueva orden a la tabla
+     * @param datos Contiene Strings de información de la orden | Fecha de solicitud, Fecha de Entrega,
+     * Número del cliente, Detalles
+     */
+    public void insertOrder(Object[] datos){
+        dtModel.insertRow(dtModel.getRowCount(), datos);
     }
     
 }

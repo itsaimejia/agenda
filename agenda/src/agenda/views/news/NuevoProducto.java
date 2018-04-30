@@ -1,28 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package agenda.views.news;
 
 import java.awt.*;
 import javax.swing.*;
-
+import agenda.tables.inventarioTable;
 /**
  *
- * @author itsai
+ * @author itsai, louq
  */
 public class NuevoProducto extends JFrame{
     
     private Container contenedor;
     private JPanel panelIzq, panelDer;
-    
     private JLabel lblId,lblNombre,lblCantAct,lblCantAgr,lblPrecioInd;
     private JTextField txtId,txtNombre,txtCantidadAgregar,txtPrecioIndividual;
     private JLabel lblCantidadActual,lblFoto;
     private JButton cargarImagen,agregar;
+    private inventarioTable tabla;
     
-    public NuevoProducto(){
+    
+    public NuevoProducto(inventarioTable tabla){
+        this.tabla=tabla;
         setTitle("Productos");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(500,400);  
@@ -85,6 +82,20 @@ public class NuevoProducto extends JFrame{
         
         agregar=new JButton("Agregar");
         agregar.setBounds(50,270,150,30);
+        
+        agregar.addActionListener(e->{
+            Object[] data ={
+                txtId.getText(),
+                txtNombre.getText(),
+                lblCantidadActual.getText(),
+                "0",
+                "0"
+            };
+            this.tabla.insertProduct(data);
+            revalidate(); repaint();
+            this.dispose();
+        
+        });
         
         panelDer.add(lblFoto);
         panelDer.add(cargarImagen);

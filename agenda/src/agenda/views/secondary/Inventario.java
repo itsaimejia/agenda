@@ -1,43 +1,49 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package agenda.views.secondary;
 
 import agenda.views.news.*;
 import java.awt.*;
 import javax.swing.*;
+import agenda.tables.inventarioTable;
 
 /**
  *
- * @author itsai
+ * @author louq
  */
 public class Inventario extends JInternalFrame{
-   private NuevoProducto nuevoProducto;
     
+    private NuevoProducto nuevoProducto;
     private Container contenedor;
     private JPanel paneTop, paneBottom;
     private JTable tabla;
     private JScrollPane scTabla;
     private JButton nuevo;
+    private inventarioTable tablon;
     
-    public Inventario(){
+    public Inventario(inventarioTable table){
+        
         this.setTitle("Inventario");
         this.setPreferredSize(new Dimension(800,450));
         contenedor= getContentPane();
 
-        
+
+        panelTop = new JPanel();
+        panelTop.setLayout(new BorderLayout());
+                  
         paneTop = new JPanel();
         paneTop.setLayout(new BorderLayout());
-        
-        
+
         nuevo = new JButton("Nuevo");
         nuevo.addActionListener(e->{
-            nuevoProducto= new NuevoProducto();
-            nuevoProducto.setVisible(true);
+            nuevoProducto= new NuevoProducto(tablon);
+            nuevoProducto.setVisible(true);     
+            
             
         });
+
+        panelTop.add(nuevo,BorderLayout.WEST); 
+        
+        panelBottom= new JPanel(null);
+
         paneTop.add(nuevo,BorderLayout.WEST);
         
         
@@ -57,21 +63,23 @@ public class Inventario extends JInternalFrame{
         Object[][] data = {
                 {id,producto,cantidad,disponible,noDisponible}
         };
+
         
-        tabla = new JTable(data, columnNames){
-          @Override
-          public boolean isCellEditable(int row, int column){
-              return false;
-          }  
-        };
+        tablon = table;
+        tabla = tablon.getTable();
+        
         scTabla = new JScrollPane(tabla);
         scTabla.setBounds(30,40,750,300);
         paneBottom.add(scTabla);
         
+
+        contenedor.add(panelTop,BorderLayout.PAGE_START);
+        contenedor.add(panelBottom,BorderLayout.CENTER);
+
         
         contenedor.add(paneTop,BorderLayout.PAGE_START);
         contenedor.add(paneBottom,BorderLayout.CENTER);
-        
+
         
         this.setClosable(false);
 	this.setVisible(true);
